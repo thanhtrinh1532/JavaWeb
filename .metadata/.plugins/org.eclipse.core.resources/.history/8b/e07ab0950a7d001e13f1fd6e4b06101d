@@ -1,0 +1,113 @@
+package person;
+import person.QuanLyHocPhan;
+import person.QuanLySinhVien;
+import person.HocPhanDao;
+import java.util.*;
+
+
+public class Menu {
+
+		// TODO Auto-generated method stub
+		QuanLyHocPhan hp=new QuanLyHocPhan();
+		QuanLySinhVien sv=new QuanLySinhVien();
+		Scanner sc=new Scanner(System.in);
+		
+		public void menuSv() {
+			int c1;
+			do {
+				System.out.println("1. Nhap thong tin sinh vien");
+				System.out.println("2. Hien thi thong tin sinh vien");
+				System.out.println("Lua chon chuc nang: ");
+				c1=sc.nextInt();
+			switch(c1) {
+				case 1:{
+					sv.nhap();
+					break;
+				}
+				case 2:{
+					sv.hienthi();
+					break;
+				}
+			}
+			}while(c1<3);
+		}
+		
+		public void menuHp() {
+			int c2;
+			do {
+				System.out.println("1. Doc File");
+				System.out.println("2. Hien thi thong tin hoc phan");
+				System.out.println("3. Hien thi danh sach hoc phan theo ki");
+				System.out.println("4. Chen them 1 hoc phan");
+				System.out.println("5. Xoa 1 hoc phan");
+				System.out.println("Lua chon chuc nang: ");
+				c2=sc.nextInt();
+			switch(c2) {
+				case 1:{
+					hp.khoiTao();
+					hp.docFile();
+					break;
+				}
+				case 2:{
+					hp.docFile();
+					hp.hienThi();
+					break;
+				}
+				case 3:{
+					hp.docFile();
+					System.out.print("nhap hoc ki can thong ke");
+					int hocky=sc.nextInt();
+					hp.hienThiHk();
+					break;
+				}
+				case 4:{
+					sc.nextLine();
+					System.out.print("nhap ma HP can chen: \n");
+					String maHp=sc.nextLine();
+					System.out.print("Nhap ten hp: ");
+					String tenHp=sc.nextLine();
+					//sc.nextLine();
+					System.out.print("Nhap so tin chi: ");
+					int soTc=sc.nextInt();
+					sc.nextLine();
+					System.out.print("Nhap hoc ki: ");
+					int hk=sc.nextInt();
+					sc.nextLine();
+					HocPhan hocphan=new HocPhan(maHp,tenHp,soTc,hk);
+					hp.chen(hocphan);
+					hp.hienThi();
+					
+					break;
+				}
+				case 5:{
+					System.out.print("nhap ma HP can xoa: \n");
+					sc.nextLine();
+					String maXoa=sc.nextLine();
+					hp.xoa(maXoa);
+					hp.hienThi();
+					break;
+				}
+				case 6:{
+					System.out.print("nhap ma HP can sua: \n");
+					sc.nextLine();
+					String maSua=sc.nextLine();
+					System.out.print("Nhap ten hp: ");
+					String tenHp=sc.nextLine();
+					//sc.nextLine();
+					System.out.print("Nhap so tin chi: ");
+					int soTc=sc.nextInt();
+					sc.nextLine();
+					System.out.print("Nhap hoc ki: ");
+					int hk=sc.nextInt();
+					sc.nextLine();
+					HocPhan hocphan=new HocPhan(maSua,tenHp,soTc,hk);
+					hp.sua(maSua,hocphan);
+					hp.hienThi();
+					break;
+				}
+			}
+			}while(c2<=6);
+		}
+	
+		
+}

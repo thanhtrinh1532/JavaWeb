@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jdt.ui.java"/>
+		</list>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="706"/>
+		<item key="DIALOG_Y_ORIGIN" value="138"/>
+		<item key="DIALOG_WIDTH" value="525"/>
+		<item key="DIALOG_HEIGHT" value="580"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\JAVAWEB\Website\MySQLDAO-main"/>
+			<item value="D:\JAVAWEB\MySQLDAO-main"/>
+			<item value="D:\JAVAWEB\Website\MySQLCRUD"/>
+			<item value="D:\JAVAWEB\Website"/>
+			<item value="C:\Users\USER\Downloads\QLyHieuThuoc"/>
+			<item value="C:\Users\USER\OneDrive\Desktop\Cuahanggiaydep\DoAnJava\src"/>
+			<item value="C:\Users\USER\OneDrive\Desktop\Cuahanggiaydep"/>
+			<item value="C:\Users\USER\eclipse-workspace\DO_AN_QLBV\bin"/>
+			<item value="C:\Users\USER\eclipse-workspace\DO_AN_QLBV"/>
+			<item value="C:\Users\USER\Documents\Zalo Received Files\Quanly"/>
+			<item value="C:\Users\USER\eclipse-workspace\NGUOI"/>
+			<item value="C:\Users\USER\eclipse-workspace"/>
+			<item value="D:\JAVA"/>
+			<item value="D:\JAVA\LTDHTK20"/>
+			<item value="D:\JAVA\LTDHTK20\Shop_Manager_System-master"/>
+		</list>
+	</section>
+</section>

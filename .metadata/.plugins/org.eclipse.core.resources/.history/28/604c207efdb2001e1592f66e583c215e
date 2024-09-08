@@ -1,0 +1,70 @@
+package Tree;
+
+import java.util.Scanner;
+public class main {
+	public Node root;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//BinaryTree obj=new BinaryTree();
+		Scanner scanner=new Scanner(System.in);
+		//obj.creat();
+		//obj.docfile();
+		//System.out.println("Hiển thị cây theo Trái-Gốc-Phải");
+		//obj.duyet();
+		//System.out.println("Hiển thị học sinh có điểm lớn hơn 7");
+		//obj.printif();
+		//System.out.println("Hiển thị xếp loại,kết quả học sinh ");
+		//obj.printkq();
+		//obj.printxl();
+		//System.out.print("\n Nhap ma sinh vien cần tìm: ");
+		//String  maSV =scanner.nextLine();
+		//obj.timkiem(maSV);
+		//System.out.print("\n Nhap ma sinh vien cần xóa: ");
+		//String  maSV =scanner.nextLine();
+		//obj.printxoa(maSV);
+		//obj.printxoa();
+		BinaryTree tree = new BinaryTree();
+		 
+        /* Tạo ra một cây nhị phân
+              50
+           /     \
+          30      70
+         /  \    /  \
+        20   40  60   80 */
+        tree.insert("18","a",7);
+        tree.insert(20);
+        tree.insert(10);
+        tree.insert(15);
+        tree.insert(12);
+        tree.insert(17);
+        tree.insert(7);
+        tree.insert(9);
+        tree.insert(8);
+        tree.insert(3);
+ 
+        System.out.println(
+                "Cây nhị phân được khởi tạo");
+        tree.inorder();
+        System.out.println("");
+        System.out.println("Xóa node 10");
+        tree.deleteKey(10);
+        System.out.println(
+                "Cây nhị phân sau khi được xử lí: ");
+        tree.inorder();
+        System.out.println("");
+        System.out.println("Xóa node 8");
+        tree.deleteKey(8);
+        System.out.println(
+                "Cây nhị phân sau khi được xử lí:");
+        tree.inorder();
+        System.out.println("");
+        System.out.println("Xóa node 3");
+        tree.deleteKey(3);
+        System.out.println(
+                "Cây nhị phân sau khi được xử lí:");
+        tree.inorder();
+        System.out.println("");
+    }
+	
+
+}

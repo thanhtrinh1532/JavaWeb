@@ -1,0 +1,13 @@
+package DOTHI;
+import java.util.ArrayList;
+public class dothi {
+	private int numberPoint;
+	private static int matrix[][];
+	private static int vs[];
+	private static int q[];
+	public dothi() {};
+	public static void init() {
+		
+	}
+
+}

@@ -1,0 +1,20 @@
+package DSLKDON1;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkList obj=new LinkList();
+		obj.creatList();
+		//obj.printList();
+		//obj.dkdiem();
+		//obj.kq();
+		//obj.xl();
+		//System.out.println("Diem cao nhat la: "+obj.maxdiem());
+		//if(obj.search("01")==null) System.out.print("Khong xuat hien");
+		//else System.out.println("Sinh vien duoc tim thay: "+obj.search("01").getHoten());
+		obj.delete("01");
+		obj.xl();
+	}
+
+}

@@ -1,0 +1,216 @@
+package DSLKKEP;
+
+import java.util.Scanner;
+
+
+import DSLKKEP.DoubleLink;
+import DSLKKEP.LinkDAO;
+
+public class LinkList {
+	public DoubleLink first,last;
+	DoubleLink q=null;DoubleLink p=null;
+	LinkDAO obj=new LinkDAO();
+	
+	public LinkList() {
+		first=null;last=null;
+	}
+	public void insert(String maBN, String hoTen, String ngaySinh, String diaChi, String soDT, String gioiTinh,
+			String ngheNghiep, String ngayKham) {
+		DoubleLink nut=new DoubleLink(maBN,hoTen,ngaySinh,diaChi,soDT,gioiTinh,ngheNghiep,ngayKham);
+		if((last==null)&&(first==null)) {last=nut;first=nut;}
+		else {
+			last.next=nut;
+			nut.prev=last;
+			last=nut;
+		}
+	}
+	public void ghifile() {
+		insert("BN001", "Nguyễn Văn A", "01/01/1980", "Tp HCM", "0123456789", "Nam", "Bác sĩ", "25/02/2024");
+		insert("BN002", "Trần Thị B", "15/05/1990", "Tp Hà Nội", "0987654321", "Nữ", "Y tá", "26/02/2024");
+		insert("BN003", "Lê Văn C", "10/10/1975", "Tp Đà Nẵng", "0345678901", "Nam", "Kỹ sư", "27/02/2024");
+		insert("BN004", "Phạm Thị D", "20/03/1985", "Tp Cần Thơ", "0765432109", "Nữ", "Giáo viên", "28/02/2024");
+		insert("BN005", "Hoàng Văn E", "05/06/1995", "Tp Hải Phòng", "0890123456", "Nam", "Nhà bếp", "01/03/2024");
+		insert("BN006", "Nguyễn Thị F", "30/09/1988", "Tp Vũng Tàu", "0654321098", "Nữ", "Công nhân", "02/03/2024");
+
+		obj.ghiFile(first,last);
+	}
+	public void docfile() {
+		first=obj.docFile("d:\\dslkkep.bin");
+	}
+	public void creatList() {
+		Scanner scanner=new Scanner(System.in);
+		while(true) {
+			String maBN="";
+			System.out.print("\n Nhap ma bệnh nhân: ");
+			 maBN =scanner.nextLine();
+			if(maBN.length()==0) {break;}
+			else {
+				System.out.print("Nhập họ tên: ");
+				String hoTen =scanner.nextLine();
+				System.out.print("Nhập ngày sinh: ");
+				String ngaySinh =scanner.nextLine();
+				System.out.print("Nhập địa chỉ: ");
+				String diaChi =scanner.nextLine();
+				System.out.print("Nhập số điện thoại: ");
+				String soDT =scanner.nextLine();
+				System.out.print("Nhập giới tính: ");
+				String gioiTinh =scanner.nextLine();
+				System.out.print("Nhập nghề nghiệp: ");
+				String ngheNghiep =scanner.nextLine();
+				System.out.print("Nhập ngày khám: ");
+				String ngayKham =scanner.nextLine();
+				scanner.nextLine();
+				insert(maBN,hoTen,ngaySinh,diaChi,soDT,gioiTinh,ngheNghiep,ngayKham);
+			}
+		}
+		obj.ghiFile(first,last);
+	}
+	//hiển thị danh sách
+	public void printList() {
+		DoubleLink p = first;
+		DoubleLink q = last;
+		System.out.println("+-------------------------------------------------------------------------------------------------------------+");
+		System.out.printf("|  %-6s |  %-12s | %-7s  |  %-9s    | %-9s  | %-3s | %-12s | %-9s |\n","Mã bn","Họ tên","Ngày sinh","Địa chỉ","Số ĐT","GT","Nghề nghiệp","Ngày Khám");
+		System.out.println("+-------------------------------------------------------------------------------------------------------------+");
+		while(p != null) {
+			System.out.printf("|  %-6s |  %-12s | %-7s |  %-12s | %-7s | %-3s | %-7s |   %-7s |\n",p.getMaBN(),p.getHoTen(),p.getNgaySinh(),p.getDiaChi(),p.getSoDT(),p.getGioiTinh(),p.getNgheNghiep(),p.getNgayKham());
+			p = p.next;
+			System.out.println("+-------------------------------------------------------------------------------------------------------------+");
+		}
+		System.out.println("");
+		obj.ghiFile(p,last);
+	}
+/*	public void printList1() {
+		DoubleLink p = last;
+		DoubleLink q = first;
+		System.out.println("+---------------------------------------------------------------------+");
+		System.out.printf("|    %-6s |       %-13s |   %-7s | %-9s | %-9s |\n","Mã sv","Họ tên","Điểm","Xếp loại","Kết quả");
+		System.out.println("+---------------------------------------------------------------------+");
+		while(p != null) {
+			System.out.printf("|    %-6s |        %-12s |   %-7.2f |   %-7s |   %-7s |\n",p.getMaSV(),p.getHoten(),p.getDiem(),p.getXl(),p.getKq());
+			//System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem()+" "+p.getXl()+" "+p.getKq());
+			p = p.prev;
+			System.out.println("+---------------------------------------------------------------------+");
+		}
+		System.out.println("");
+		obj.ghiFile(q,p);
+	}/*
+	//kiểm tra kết quả
+	public DoubleLink kq() {
+		DoubleLink p = first;
+		while(p != null) {
+			if(p.getDiem()>=5) p.setKq("Đậu");
+			else p.setKq("Rớt");
+			p = p.next;
+		}
+		obj.ghiFile(p);
+		return p;
+	}
+	
+	//xếp loại sinh viên
+	public DoubleLink xl() {
+		DoubleLink p = first;
+		while(p != null) {
+			if(p.getDiem()<5) p.setXl("Kém");
+			else if(p.getDiem()<7) p.setXl("Trung bình");
+				else if(p.getDiem()<8) p.setXl("Khá");
+				else p.setXl("Giỏi");
+
+			p = p.next;
+		}
+		obj.ghiFile(p);
+		return p;
+	}*/
+	//tìm kiếm theo mã
+	public DoubleLink search(String maBN) {
+		DoubleLink p=first;
+		while((p!=null)&&(p.getMaBN().equals(maBN)!=true)) {
+			p=p.next;
+		}
+		return p;
+	}
+	//xóa theo mã sv
+	public void delete(String maBN) {
+		DoubleLink p=search(maBN);
+		if(p!=null) {
+			if((first==last)&&(last==p)) {first=null;last=null;}
+			else if(p==first) {first=first.next;first.prev=null;}
+				else 
+					if(p==last) {last=last.prev;last.next=null;}
+					else {DoubleLink u=p.prev;
+					DoubleLink v=p.next;
+					u.next=v;v.prev=u;
+					}
+				
+		}
+		obj.ghiFile(p,last);
+	}
+	/*//sắp xếp họ tên tăng dần
+	public void sortList() {
+		String ht,maSV;
+		double diem;
+		DoubleLink p=first;
+		while(p!=null) {
+			DoubleLink q=p.next;
+			while(q!=null) {
+				if(p.getHoten().compareTo(q.getHoten())>0) {
+					ht=q.getHoten();diem=q.getDiem();maSV=q.getMaSV();
+					q.setMaSV(p.getMaSV());q.setHoten(p.getHoten());q.setDiem(p.getDiem());
+					p.setMaSV(maSV);p.setHoten(ht);;p.setDiem(diem);	
+				}
+				q=q.next;
+			}
+			p=p.next;
+		}
+	}
+	//hiển thị danh sách sinh viên điểm cao nhất
+	public double maxdiem() {
+		
+		double max=first.getDiem();
+		DoubleLink p = first.next;
+		while(p != null) {
+			if(max<p.getDiem()) max=p.getDiem();
+			p=p.next;
+		}
+		return max;
+	}
+	public void printmax() {
+		DoubleLink p = first;
+		System.out.println("SINH VIÊN CÓ ĐIỂM CAO NHẤT");
+		System.out.println("+---------------------------------------------------------------------+");
+		System.out.printf("|    %-6s |       %-13s |   %-7s | %-9s | %-9s |\n","Mã sv","Họ tên","Điểm","Xếp loại","Kết quả");
+		while(p != null) {
+			if(p.getDiem()==maxdiem()) {
+				System.out.println("+---------------------------------------------------------------------+");
+				System.out.printf("|    %-6s |        %-12s |   %-7.2f |   %-7s |   %-7s |\n",p.getMaSV(),p.getHoten(),p.getDiem(),p.getXl(),p.getKq());
+				
+			}
+			//System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem()+" "+p.getXl()+" "+p.getKq());
+			p = p.next;
+			
+		}
+		System.out.println("+---------------------------------------------------------------------+");
+		obj.ghiFile(p);
+	}
+	//Thống kê danh sách theo xếp loại
+	public void thongke() {
+		System.out.println("THỐNG KÊ DANH SÁCH SINH VIÊN");
+		DoubleLink p = first; int demgioi=0,demkha=0,demTB=0,demkem=0;
+		while(p!=null) {
+			
+			if(p.getXl().equals("Giỏi")) demgioi++;
+			else if(p.getXl().equals("Khá")) demkha++;
+				else if(p.getXl().equals("Trung bình")) demTB++;
+					else demkem++;
+			p=p.next;
+					}
+			System.out.println("So luong GIỎI: " + demgioi);
+			System.out.println("So luong KHÁ: " + demkha);
+			System.out.println("So luong TRUNG BÌNH:" + demTB);
+			System.out.println("So luong KÉM:" + demkem);
+		
+			
+		
+	}*/
+	
+}

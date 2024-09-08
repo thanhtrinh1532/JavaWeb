@@ -1,0 +1,49 @@
+package person;
+import java.util.*;
+public class QuanLySinhVien {
+	public ArrayList<SinhVien> dssv=new ArrayList<SinhVien>();
+	HocPhanDao obj=new HocPhanDao();
+		public void nhap() {
+			Scanner sc=new Scanner(System.in);
+			for(int i=0;i<2;i++) {
+				System.out.println("Nhap ma SV: ");
+				String maSv=sc.nextLine();
+				sc.nextLine();
+				System.out.println("Nhap hoc ten: ");
+				String hoTen=sc.nextLine();
+				System.out.println("Nhap tuoi: ");
+				int tuoi=sc.nextInt();
+				
+				System.out.println("Nhap diem HP: ");
+				String diemHP=sc.nextLine();
+				SinhVien sv=new SinhVien(hoTen, tuoi, maSv, diemHP);
+				dssv.add(sv);
+			}
+		}
+		
+		public void hienthi() {
+			for (SinhVien sv:dssv) {
+				System.out.println("Ma sv: "+ sv.getMaSV()+" Ho ten: "+sv.getHoTen()+" Diem HP: "+sv.getDiemHP());
+			}
+		}
+		
+		public void hocPhan() {
+			for(SinhVien sv:dssv) {
+				System.out.print("Ho ten sv:"+sv.getHoTen());
+				String txt[]=sv.getDiemHP().split("\\s+");
+				for (int i=0; i<txt.length;i++) {
+					String tam=txt[i].substring(0,2);
+					if(ktra(tam).length()!=0) System.out.println("hoc phan: "+ktra(tam)+" diem: "+txt[i].substring(2,3));
+				}
+			}
+		}
+		
+		public String ktra( String tam) {
+			String ktra="";
+			dshp =obj.docFile("d:\\dshp1.bin");
+			for(HocPhan hp:dshp) {
+				if(hp.getMaHP().equals(tam)==true) ktra=hp.getTenHP();
+			}
+			return ktra;
+		}
+}

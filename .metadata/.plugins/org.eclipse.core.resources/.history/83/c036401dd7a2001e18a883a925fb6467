@@ -1,0 +1,135 @@
+package DSLKDON1;
+
+import java.util.Scanner;
+
+public class LinkList {
+	private Link first;
+	
+		//contructor
+		public LinkList() {
+			first=null;
+		}
+		public Link insert(String maSV,String hoten, double diem) {
+			Link nut=new Link(maSV,hoten,diem);
+			nut.nextLink=first;
+			first=nut;
+			return first;
+		}
+		public void creatList() {
+			LinkList list =new LinkList();
+			Scanner scanner=new Scanner(System.in);
+			while(true) {
+				String maSV="";
+				System.out.print("Nhap ma sinh vien: ");
+				 maSV =scanner.nextLine();
+				if(maSV.length()==0) {break;}
+				else {
+					System.out.print("Nhap ho ten: ");
+					String hoten =scanner.nextLine();
+					System.out.println("nhap diem");
+					float diem=scanner.nextFloat();
+					scanner.nextLine();
+					first=list.insert(maSV, hoten, diem);
+				}
+			}
+		}
+		
+		public void printList() {
+			Link p = first;
+			while(p != null) {
+				System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem());
+				p = p.nextLink;
+			}
+		}
+		
+		public void dkdiem() {
+			Link p = first;
+			while(p != null) {
+				if(p.getDiem()>=5) System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem());
+				p = p.nextLink;
+			}
+		}
+		
+		public void kq() {
+			Link p = first;
+			while(p != null) {
+				if(p.getDiem()>=5) p.setKq("Đậu");
+				else p.setKq("Rớt");
+				System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem()+" "+p.getKq());
+				p = p.nextLink;
+			}
+		}
+		
+		public void xl() {
+			Link p = first;
+			while(p != null) {
+				if(p.getDiem()<5) p.setXl("Kém");
+				else if(p.getDiem()<7) p.setXl("Trung bình");
+					else if(p.getDiem()<8) p.setXl("Khá");
+					else p.setXl("Giỏi");
+				System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem()+" "+p.getXl()+" "+p.getKq());
+				p = p.nextLink;
+			}
+		}
+		
+		public double maxdiem() {
+			double max=first.getDiem();
+			Link p = first.nextLink;
+			while(p != null) {
+				if(max<p.getDiem()) max=p.getDiem();
+				p=p.nextLink;
+			}
+			return max;
+		}
+		
+		public Link search(String maSV) {
+			Link p=first;
+			while((p!=null)&&(p.getMaSV().equals(maSV)!=true)) {
+				p=p.nextLink;
+			}
+			return p;
+		}
+		
+		public void delete(String maSV) {
+			Link p=search(maSV);
+			if(p!=null) {
+				if(p==first) first=first.nextLink;
+				else {
+					Link q=first;
+					while ((q.nextLink!=p)&&(q!=null)) q=q.nextLink;
+					q.nextLink=p.nextLink;
+				}
+			}
+		}
+		
+		public void sortList() {
+			String ht,maSV;
+			double diem;
+			Link p=first;
+			while(p!=null) {
+				Link q=p.nextLink;
+				while(q!=null) {
+					if(p.getHoten().compareTo(q.getHoten())>0) {
+						ht=q.getHoten();diem=q.getDiem();maSV=q.getMaSV();
+						q.setMaSV(p.getMaSV());q.setHoten(p.getHoten());q.setDiem(p.getDiem());
+					p.setMaSV(maSV);p.setHoten(maSV);p.setDiem(diem);	}
+				}
+				q=q.nextLink;
+			}
+			p=p.nextLink;
+		}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

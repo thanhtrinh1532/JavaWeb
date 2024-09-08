@@ -1,0 +1,21 @@
+package dequy;
+
+public class TongLT {
+	public static int lt(int i)
+	{
+		if(i==0) return 1;
+		else return i*lt(i-1);
+	}
+	public static int tonglt(int n) {
+		if(n==1) return 1;
+		else {
+			//int s=n*lt(n-1);
+			return lt(n)+lt(n-1);
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.print("Luy thua cua 2^n la:"+tonglt(2));
+	}
+
+}

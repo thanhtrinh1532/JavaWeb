@@ -1,0 +1,74 @@
+package person;
+import java.util.*;
+
+
+public class QuanLyHocPhan {
+	public ArrayList<HocPhan> dshp=new ArrayList<HocPhan>();
+	
+	HocPhanDao obj=new HocPhanDao();
+	public void khoiTao() {
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<3;i++) {
+			System.out.print("Nhap ma hp: ");
+			String maHp=sc.nextLine();
+			System.out.print("Nhap ten hp: ");
+			String tenHp=sc.nextLine();
+			//sc.nextLine();
+			System.out.print("Nhap so tin chi: ");
+			int soTc=sc.nextInt();
+			sc.nextLine();
+			System.out.print("Nhap hoc ki: ");
+			int hk=sc.nextInt();
+			sc.nextLine();
+			HocPhan hp=new HocPhan(maHp,tenHp,soTc,hk);
+			dshp.add(hp);
+		}
+		
+		obj.ghiFile(dshp);
+	}
+	public void docFile() {
+		dshp=obj.docFile("d:\\dshp1.bin");
+		System.out.println("");
+	}
+	public void hienThi() {
+		System.out.printf("%-10s %-20s %-10s %-10s","Ma Hp","ten Hp","so Tc","hoc ki");
+		for(HocPhan hp:dshp) {
+			System.out.println("");
+			//System.out.println("Ma Hp: "+hp.getMaHP()+" ten Hp: "+ hp.getTenHP()+" so Tc: "+ hp.getSoTC()+" hoc ki: "+hp.getHk());
+			System.out.printf("%-10s %-20s %-10d %-10d",hp.getMaHP(),hp.getTenHP(),hp.getSoTC(),hp.getHk());
+		}
+		System.out.println("");
+	}
+	
+	public void hienThiHk() {
+			System.out.printf("%-10s %-20s %-10s %-10s","Ma Hp","ten Hp","so Tc","hoc ki");
+			for(int i=0;i<dshp.size();i++) {
+				System.out.println("");
+				if(dshp.get(i).getHk()==4) System.out.printf("%-10s %-20s %-10d %-10d",dshp.get(i).getMaHP(),dshp.get(i).getTenHP(),dshp.get(i).getSoTC(),dshp.get(i).getHk());
+			}
+			System.out.println("");
+			
+	}
+	
+	public void chen(HocPhan hocphan) {
+		System.out.println("Danh sach sau khi chen: \n");
+		dshp.add(hocphan);
+		obj.ghiFile(dshp);
+	}
+	
+	public void xoa(String maXoa) {
+		System.out.println("Danh sach sau khi xoa: \n");
+		for (int i=0;i<dshp.size();i++) {
+			if (dshp.get(i).getMaHP().equals(maXoa)==true) dshp.remove(i);
+		}
+		obj.ghiFile(dshp);
+	}
+	
+	public void sua(String maSua, HocPhan hocphansua) {
+		System.out.println("Danh sach sau khi sua: \n");
+		for (int i=0;i<dshp.size();i++) {
+			if (dshp.get(i).getMaHP().equals(maSua)==true) dshp.set(i, hocphansua);
+		}
+	}
+	
+}

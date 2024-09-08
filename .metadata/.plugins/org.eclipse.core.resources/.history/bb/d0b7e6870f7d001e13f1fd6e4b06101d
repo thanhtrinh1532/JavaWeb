@@ -1,0 +1,28 @@
+package person;
+import java.util.*;
+public class QuanLySinhVien {
+	public ArrayList<SinhVien> dssv=new ArrayList<SinhVien>();
+		public void nhap() {
+			Scanner sc=new Scanner(System.in);
+			for(int i=0;i<2;i++) {
+				System.out.println("Nhap ma SV: ");
+				String maSv=sc.nextLine();
+				sc.nextLine();
+				System.out.println("Nhap hoc ten: ");
+				String hoTen=sc.nextLine();
+				System.out.println("Nhap tuoi: ");
+				int tuoi=sc.nextInt();
+				System.out.println("Nhap diem TB: ");
+				float diemTb=sc.nextFloat();
+				System.out.println("Nhap diem HP: ");
+				String diemHP=sc.nextLine();
+				SinhVien sv=new SinhVien(hoTen, tuoi, maSv, diemTb, diemHP);
+				dssv.add(sv);
+			}
+		}
+		public void hienthi() {
+			for (SinhVien sv:dssv) {
+				System.out.println("Ma sv: "+ sv.getMaSV()+" Ho ten: "+sv.getHoTen()+" DTB: "+sv.getDiemTb());
+			}
+		}
+}

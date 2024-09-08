@@ -1,0 +1,229 @@
+package Main;
+
+import java.util.Scanner;
+
+import DTO.ThucDon;
+import QL.QuanLyThucDon;
+import QL.QuanLyBan;
+import DAO.ThucDonDAO;
+public class CacMenu {
+
+	// TODO Auto-generated method stub
+	QuanLyThucDon td=new QuanLyThucDon();
+	QuanLyBan ban=new QuanLyBan();
+	ThucDonDAO file=new ThucDonDAO();
+	Scanner sc=new Scanner(System.in);
+	
+	public void menuTD() {
+		int c1;
+			System.out.print("\u001B[42m");
+		
+		do {
+			System.out.println("                                                  ");
+			System.out.println("************** LÀM VIỆC VỚI THỰC ĐƠN *************");
+			System.out.println("                        <^>                       ");
+		 System.out.print("\u001B[47m");
+		 System.out.print("\u001B[34m");
+	        System.out.println("==================================================");
+		    System.out.println("**  1. Nhập danh sách món cho thực đơn          **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  2. Hiện thị thực đơn                        **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  3. Hiện thị thực đơn theo loại              **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  4. Thêm món vào thực đơn                    **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  5. Xóa món trong thực đơn                   **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  6. Sửa thông tin món                        **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  7. Kiểm tra thông tin bàn                   **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  8. Lập hóa đơn                              **");
+			System.out.println("**************************************************");
+			System.out.print("\u001B[0m");
+			System.out.println("Lua chon chuc nang ==> ");
+			c1=sc.nextInt();
+			
+		switch(c1) {
+			case 1:{
+				td.khoiTao();
+				
+				break;
+			}
+			case 2:{
+				td.docFile();
+				td.hienThiThucDon();
+				break;
+			}
+			case 3:{
+				sc.nextLine();
+				System.out.println("Nhap loai thuc uong can tim: ");
+				String loai=sc.nextLine();
+				td.hienThiMonTheoLoai(loai);
+				break;
+			}
+			case 4:{
+				td.docFile();
+				System.out.println("Nhap vi tri can them mon: ");
+				int vt=sc.nextInt();
+				sc.nextLine();
+				System.out.print("Nhap id thuc uong can them: ");
+				String id=sc.nextLine();
+				System.out.print("Nhap ten thuc uong: ");
+				String tenMon=sc.nextLine();
+				System.out.print("Nhap id loai: ");
+				String id_Loai=sc.nextLine();
+				System.out.print("Nhap don gia: ");
+				int donGia=sc.nextInt();
+				sc.nextLine();
+				System.out.print("Nhap don vi tinh: ");
+				String donViTinh="VND";
+				ThucDon themMon=new ThucDon(id,tenMon,id_Loai,donGia,donViTinh);
+				td.chen(vt,themMon);
+				break;
+			}
+			case 5:{
+				/*System.out.println("Nhap vi tri can chen: ");
+				int vt=sc.nextInt();
+				sc.nextLine();
+				System.out.println("Nhap ma SV: ");
+				String maSv=sc.nextLine();
+				maSv=sv.check(maSv);
+				sc.nextLine();
+				System.out.println("Nhap hoc ten: ");
+				String hoTen=sc.nextLine();
+				System.out.println("Nhap tuoi: ");
+				int tuoi=sc.nextInt();
+				sv.check(tuoi);
+				System.out.println("Nhap diem trung binh: ");
+				float diemTb=sc.nextFloat();
+				SinhVien obj=new SinhVien(hoTen, tuoi, maSv, diemTb);
+				sv.chen(vt, obj);*/
+				break;
+			}
+			case 6:{
+				/*System.out.print("nhap ma SV can xoa: \n");
+				sc.nextLine();
+				String maSV=sc.nextLine();
+				sv.xoa(maSV);
+				sv.hienthi();*/
+				break;
+			}
+			case 7:{
+				//sv.hienthiMax();
+				break;
+			}
+			case 8:{
+				/*System.out.print("nhap ma SV can sua: \n");
+				sc.nextLine();
+				String maSua=sc.nextLine();
+				sc.nextLine();
+				System.out.println("Nhap hoc ten: ");
+				String hoTen=sc.nextLine();
+				System.out.println("Nhap tuoi: ");
+				int tuoi=sc.nextInt();
+				
+				System.out.println("Nhap diem trung binh: ");
+				float diemTb=sc.nextFloat();
+				SinhVien sinhviensua=new SinhVien(hoTen, tuoi, maSua, diemTb);
+				sv.sua(maSua, sinhviensua);*/
+				break;
+			}
+		}
+		}while(c1<=6);
+	}
+	
+	public void menuBan() {
+		int c2;
+		do {
+			System.out.println("                                                  ");
+			System.out.println("************** LÀM VIỆC VỚI BÀN *************");
+			System.out.println("                        <^>                       ");
+		 System.out.print("\u001B[47m");
+		 System.out.print("\u001B[34m");
+	        System.out.println("==================================================");
+		    System.out.println("**  1. Nhập danh sách món cho thực đơn          **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  2. Hiện thị thực đơn                        **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  3. Hiện thị thực đơn theo loại              **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  4. Thêm món vào thực đơn                    **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  5. Xóa món trong thực đơn                   **");
+			System.out.println("**----------------------------------------------**");
+			System.out.println("**  6. Sửa thông tin món                        **");
+			System.out.println("**************************************************");
+			System.out.print("\u001B[0m");
+			System.out.println("Lua chon chuc nang ==> ");
+			c2=sc.nextInt();
+		switch(c2) {
+			case 1:{
+				//hp.khoiTao();
+				//hp.docFile();
+				break;
+			}
+			case 2:{
+				//hp.docFile();
+				//hp.hienThi();
+				break;
+			}
+			case 3:{
+				/*hp.docFile();
+				System.out.print("nhap hoc ki can thong ke");
+				int hocky=sc.nextInt();
+				hp.hienThiHk(hocky);*/
+				break;
+			}
+			case 4:{
+				/*sc.nextLine();
+				System.out.print("nhap ma HP can chen: \n");
+				String maHp=sc.nextLine();
+				System.out.print("Nhap ten hp: ");
+				String tenHp=sc.nextLine();
+				//sc.nextLine();
+				System.out.print("Nhap so tin chi: ");
+				int soTc=sc.nextInt();
+				sc.nextLine();
+				System.out.print("Nhap hoc ki: ");
+				int hk=sc.nextInt();
+				sc.nextLine();
+				HocPhan hocphan=new HocPhan(maHp,tenHp,soTc,hk);
+				hp.chen(hocphan);
+				hp.hienThi();*/
+				
+				break;
+			}
+			case 5:{
+				/*System.out.print("nhap ma HP can xoa: \n");
+				sc.nextLine();
+				String maXoa=sc.nextLine();
+				hp.xoa(maXoa);
+				hp.hienThi();*/
+				break;
+			}
+			case 6:{
+				/*System.out.print("nhap ma HP can sua: \n");
+				sc.nextLine();
+				String maSua=sc.nextLine();
+				System.out.print("Nhap ten hp: ");
+				String tenHp=sc.nextLine();
+				//sc.nextLine();
+				System.out.print("Nhap so tin chi: ");
+				int soTc=sc.nextInt();
+				sc.nextLine();
+				System.out.print("Nhap hoc ki: ");
+				int hk=sc.nextInt();
+				sc.nextLine();
+				HocPhan hocphan=new HocPhan(maSua,tenHp,soTc,hk);
+				hp.sua(maSua,hocphan);
+				hp.hienThi();*/
+				break;
+			}
+		}
+		}while(c2<=6);
+	}
+
+	
+}

@@ -1,0 +1,84 @@
+package DSLKKEP;
+
+import java.util.Scanner;
+
+public class menubenhnhan {
+
+	public void menubenhnhan() { {
+		// TODO Auto-generated method stub
+				LinkList obj=new LinkList();
+				Scanner sc=new Scanner(System.in);
+				
+				
+				int c1;
+				do {
+					System.out.println("********** MENU BỆNH NHÂN ***********");
+					System.out.println("* 1.Đọc danh sách từ file           *");
+					System.out.println("* 2.Hiển thị danh sách              *");
+					System.out.println("* 3.Tìm bệnh nhân theo mã           *");
+					System.out.println("* 4.Xóa bệnh nhân theo mã           *");
+					System.out.println("* 5.Thêm bệnh nhân theo mã          *");
+					System.out.println("* 6.Sửa thông tin bệnh nhân theo mã *");
+					System.out.println("* 7.Sắp xếp bệnh nhân theo tên      *");
+					System.out.println("* 0.Thoát chương trình              *");
+					System.out.println("*************************************");
+					c1=sc.nextInt();
+					switch(c1) {
+					case 1: {
+						obj.ghifile();
+						obj.docfile();
+						break;
+					}
+					case 2: {
+						obj.docfile();
+						obj.printList();
+						break;
+					}
+					case 3:{
+						sc.nextLine();
+						//obj.docfile();
+						System.out.print("Nhập mã mã BN cần tìm:");
+						String maTim=sc.nextLine();
+						String rong="";
+						if (maTim.compareTo(rong)==0) {
+							System.out.println("Không được rỗng");
+						}
+						else obj.hienthisearch(maTim);
+						break;
+					}
+					case 4:{
+
+						sc.nextLine();
+						System.out.print("Nhập mã mã BN cần xóa:");
+						String ma=sc.nextLine();
+						String rong="";
+						if (ma.compareTo(rong)==0) {
+							System.out.println("Không được rỗng ");
+							sc.nextLine();
+						}
+						else 
+							{System.out.println("Danh sách sau khi xóa");
+							obj.delete(ma);
+							}
+						System.out.println("");
+						break;
+					}
+					case 5:{
+						obj.insert_BN();
+						obj.printList();
+						break;
+					}
+					case 6:{
+						System.out.println("Danh sách sau khi sắp xếp theo họ tên");
+						obj.sortList();
+						obj.printList();
+						break;
+					}
+					default: break;
+					}
+					
+				}while(c1<=6);
+	}
+	}}
+
+

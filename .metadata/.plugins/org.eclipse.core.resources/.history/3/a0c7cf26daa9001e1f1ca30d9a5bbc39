@@ -1,0 +1,19 @@
+package DSLKDOI;
+import java.util.Scanner;
+public class DoubleLinkList {
+	public DoubleLink first,last;
+	DoubleLink q=null;DoubleLink p=null;
+	
+	public DoubleLinkList() {
+		first=null;last=null;
+	}
+	public void insert(String maSV, String hoTen,double diem) {
+		DoubleLink nut=new DoubleLink(maSV,hoTen,diem);
+		if((last==null)&&(first==null)) {last=null;first=null;}
+		else {
+			last.next=nut;
+			nut.prev=last;
+			last=nut;
+		}
+	}
+}

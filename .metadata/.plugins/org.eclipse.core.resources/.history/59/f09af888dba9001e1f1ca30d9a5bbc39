@@ -1,0 +1,48 @@
+package DSLKDOI;
+import java.util.Scanner;
+
+
+public class DoubleLinkList {
+	public DoubleLink first,last;
+	DoubleLink q=null;DoubleLink p=null;
+	DoubleLinkDAO obj=new DoubleLinkDAO();
+	
+	public DoubleLinkList() {
+		first=null;last=null;
+	}
+	public void insert(String maSV, String hoTen,double diem) {
+		DoubleLink nut=new DoubleLink(maSV,hoTen,diem);
+		if((last==null)&&(first==null)) {last=null;first=null;}
+		else {
+			last.next=nut;
+			nut.prev=last;
+			last=nut;
+		}
+	}
+	public void creatList() {
+		//boolean ok;
+		Scanner scanner=new Scanner(System.in);
+		while(true) {
+			String maSV="";
+			System.out.print("Nhap ma sinh vien: ");
+			 maSV =scanner.nextLine();
+			if(maSV.length()==0) {break;}
+			else {
+				System.out.print("Nhap ho ten: ");
+				String hoten =scanner.nextLine();
+				System.out.println("nhap diem");
+				float diem=scanner.nextFloat();
+				scanner.nextLine();
+				insert(maSV, hoten, diem);
+			}
+		}
+	}
+	public void printList() {
+		DoubleLink p = first;
+		while(p != null) {
+			System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem());
+			p = p.next;
+		}
+		System.out.println("");
+	}
+}

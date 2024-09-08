@@ -1,0 +1,277 @@
+package quanlydoituong;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Collections;
+import java.util.Comparator;
+
+import doituong.KhachHang;
+import doituong.NhanVien;
+import quanlyfile.NhanVienDao;
+
+public class QuanLyNhanVien {
+	public ArrayList<NhanVien> dsnv = new ArrayList<NhanVien>();
+	
+	Scanner sc = new Scanner(System.in);
+	
+	NhanVienDao obj = new NhanVienDao();
+	public void nhap() {
+		for(int i = 0; i < 2; i++) {
+			String maNv;
+			do {
+				System.out.println("Nhap ma nhan vien: ");
+				maNv = sc.nextLine();
+				if(kiemTraTrungMa(checkNull(maNv))) {
+					System.out.println("Ma nhan vien da ton tai. Vui long nhap lai:");
+				}
+			} while(kiemTraTrungMa(checkNull(maNv)));
+			System.out.println("Nhap ho nhan vien:");
+	        String hoNv = sc.nextLine();
+	        System.out.println("Nhap ten nhan vien:");
+	        String tenNv = sc.nextLine();
+	        System.out.println("Nhap nam sinh:");
+	        int namSinh = sc.nextInt();
+	        sc.nextLine();
+
+	        System.out.println("Gioi tinh:");
+	        String gioiTinh = sc.nextLine();
+	        System.out.println("Nhap dia chi:");
+	        String diaChi = sc.nextLine();
+	        System.out.println("Nhap so dien thoai:");
+	        String soDienThoai = sc.nextLine();
+	        System.out.println("Nhap chuc vu:");
+	        String chucVu = sc.nextLine();
+
+	        System.out.println("Ngay vao lam");
+	        int ngayLam = sc.nextInt();
+	        System.out.println("Thang vao lam");
+	        int thangLam = sc.nextInt();
+	        System.out.println("Nam vao lam");
+	        int namLam = sc.nextInt();
+	        System.out.println("Nhap luong:");
+	        int luong = sc.nextInt();
+	        System.out.println("Nhap so ngay nghi");
+	        int ngayNghi = sc.nextInt();
+	        sc.nextLine(); 
+	        System.out.println("Nhap ghi chu:");
+	        String ghiChu = sc.nextLine();
+	        NhanVien nv = new NhanVien(hoNv, tenNv, namSinh, gioiTinh, diaChi, soDienThoai, maNv, chucVu, ngayLam, thangLam, namLam, luong, ngayNghi, ghiChu);
+	        dsnv.add(nv);
+		}
+		tinhTienThuong();
+		tinhTongLuong();
+		obj.ghiFile(dsnv);
+	}
+	
+	public void hienThi() {
+		System.out.println(" ______________________________________________________________________________________________________________________________________________________");
+        System.out.printf("|%6s|%20s|%10s|%10s|%10s|%10s|%10s|%10s|%10s|%10s|%10s|%10s|%12s|\n", 
+        		"Ma NV", "Họ", "Tên", "Giới Tính", "Năm Sinh", "SĐT", "Địa chỉ", "Chức Vụ", "Ngay vao", "Ngay nghi", "Lương", "Thưởng", "Tổng Lương");
+        for(NhanVien nv:dsnv) {
+        	System.out.println("|------------------------------------------------------------------------------------------------------------------------------------------------------|");
+        	System.out.printf("|%6s|%20s|%10s|%10s|%10d|%10s|%10s|%10s|%2d/%2d/%4d|%10d|%10d|%10d|%12d|\n", 
+        			nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getGioiTinh(), nv.getNamSinh(), nv.getSoDienThoai(), nv.getDiaChi(), nv.getChucVu(), nv.getNgay(), nv.getThang(), nv.getNam(), nv.getNgayNghi(), nv.getLuong(), nv.getThuong(), nv.getTongLuong());
+        }
+        System.out.println("|______________________________________________________________________________________________________________________________________________________|");
+    }
+	
+	public void docFile() {
+		dsnv = obj.docFile("D:\\Learn\\Java\\DoAnJava\\src\\filedata\\dsnv.bin");
+		obj.ghiFile(dsnv);
+	}
+	
+	public String checkNull(String chuoi) {
+		while(true) {
+			try {
+				if(chuoi.length() != 0) {
+					break;
+				} else {
+					System.out.println("Không được null");
+					System.out.println("Nhập lại");
+					chuoi = sc.nextLine();
+				}
+			}catch (Exception e) {
+				System.err.println("Bạn đã nhập sai(Giá trị nhập bằng Null");
+			}
+		}
+		return(chuoi);
+	}
+	
+	public void themNhanVien() {
+		String maNv;
+		sc.nextLine();
+		do {
+			System.out.println("Nhap ma nhan vien: ");
+			maNv = sc.nextLine();
+			if(kiemTraTrungMa(maNv)) {
+				System.out.println("Ma nhan vien da ton tai. Vui long nhap lai:");
+			}
+		} while(kiemTraTrungMa(maNv));
+		System.out.println("Nhap ho nhan vien:");
+        String hoNv = sc.nextLine();
+        System.out.println("Nhap ten nhan vien:");
+        String tenNv = sc.nextLine();
+        System.out.println("Nhap nam sinh:");
+        int namSinh = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Gioi tinh:");
+        String gioiTinh = sc.nextLine();
+        System.out.println("Nhap dia chi:");
+        String diaChi = sc.nextLine();
+        System.out.println("Nhap so dien thoai:");
+        String soDienThoai = sc.nextLine();
+        System.out.println("Nhap chuc vu:");
+        String chucVu = sc.nextLine();
+
+        System.out.println("Ngay vao lam");
+        int ngayLam = sc.nextInt();
+        System.out.println("Thang vao lam");
+        int thangLam = sc.nextInt();
+        System.out.println("Nam vao lam");
+        int namLam = sc.nextInt();
+        System.out.println("Nhap luong:");
+        int luong = sc.nextInt();
+        System.out.println("Nhap so ngay nghi");
+        int ngayNghi = sc.nextInt();
+        sc.nextLine(); 
+        System.out.println("Nhap ghi chu:");
+        String ghiChu = sc.nextLine();
+        NhanVien nv = new NhanVien(hoNv, tenNv, namSinh, gioiTinh, diaChi, soDienThoai, maNv, chucVu, ngayLam, thangLam, namLam, luong, ngayNghi, ghiChu);
+		dsnv.add(nv);
+		tinhTienThuong();
+		tinhTongLuong();
+		obj.ghiFile(dsnv);
+	}
+	
+	public void suaThongTinNv() {
+		String maNv;
+		System.out.println("Nhập mã nhân viên muốn sửa");
+		maNv = sc.nextLine();
+		for(NhanVien nv : dsnv) {
+			if(nv.getMaNhanVien().equals(maNv)) {
+				System.out.println("Nhap ho nhan vien:");
+		        nv.setHo(sc.nextLine());
+		        System.out.println("Nhap ten nhan vien:");
+		        nv.setTen(sc.nextLine());
+		        System.out.println("Nhap nam sinh:");
+		        nv.setNamSinh(sc.nextInt());
+		        sc.nextLine();
+
+		        System.out.println("Gioi tinh:");
+		        nv.setGioiTinh(sc.nextLine());
+		        System.out.println("Nhap dia chi:");
+		        nv.setDiaChi(sc.nextLine());
+		        System.out.println("Nhap so dien thoai:");
+		        nv.setSoDienThoai(sc.nextLine());
+		        System.out.println("Nhap chuc vu:");
+		        nv.setChucVu(sc.nextLine());
+
+		        System.out.println("Ngay vao lam");
+		        nv.setNgay(sc.nextInt());
+		        System.out.println("Thang vao lam");
+		        nv.setThang(sc.nextInt());
+		        System.out.println("Nam vao lam");
+		        nv.setNam(sc.nextInt());
+		        System.out.println("Nhap luong:");
+		        nv.setLuong(sc.nextInt());
+		        System.out.println("Nhap so ngay nghi");
+		        nv.setNgayNghi(sc.nextInt());
+		        sc.nextLine(); 
+		        
+		        System.out.println("Nhap ghi chu:");
+		        nv.setGhichu(sc.nextLine());
+				tinhTienThuong();
+				tinhTongLuong();
+			}
+		}
+		obj.ghiFile(dsnv);
+	}
+	
+	public void sapXepTheoTen() {
+        Collections.sort(dsnv, new Comparator<NhanVien>() {
+            @Override
+            public int compare(NhanVien nv1, NhanVien nv2) {
+                //compareTo để so sánh theo tên
+                return nv1.getTen().compareTo(nv2.getTen());
+            }
+        });
+    }
+	
+	public void hienThiTheoGioiTinh(String gioiTinh) {
+		System.out.println(" ____________________________________________________________________________________________________________________________________");
+		System.out.printf("|%6s|%20s|%10s|%10s|%10s|%10s|%10s|%6s|%10s|%10s|%10s|%10s|\n", 
+        		"Ma NV", "Họ", "Tên", "Giới Tính", "Năm Sinh", "SĐT", "Chức Vụ", "Ngay vao", "Ngay nghi", "Lương", "Thưởng", "Tổng Lương");
+        for (NhanVien nv : dsnv) {
+        	System.out.println("|------------------------------------------------------------------------------------------------------------------------------------|");
+            if (nv.getGioiTinh().equalsIgnoreCase(gioiTinh)) {
+            	System.out.printf("|%6s|%20s|%10s|%10s|%10d|%10s|%10s|%2d/%2d/%4d|%10d|%10d|%10d|%10d|\n", 
+            			nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getGioiTinh(), nv.getNamSinh(), nv.getSoDienThoai(), nv.getChucVu(), nv.getNgay(), nv.getThang(), nv.getNam(), nv.getNgayNghi(), nv.getLuong(), nv.getThuong(), nv.getTongLuong());
+            }
+        }
+    }
+	
+	public void timKiemNv() {
+		String maNv;
+		int check = 0;
+		System.out.println("Nhập mã khách hàng");
+		maNv = sc.nextLine();
+		for(int i = 0; i < dsnv.size(); i++) {
+			if(dsnv.get(i).getMaNhanVien().equals(maNv) == true) {
+				check++;
+				System.out.println(" ____________________________________________________________________________________________________________________________________");
+				System.out.printf("|%15s|%20s|%10s|%10s|%10s|%30s|%15s|%15s|\n","Ma khach hang","Ho", "Ten", "Nam sinh","Gioi tinh", "Dia chi", "So dien thoai", "Diem mua hang");
+				System.out.println("|------------------------------------------------------------------------------------------------------------------------------------|");
+				System.out.printf("|%6s|%20s|%10s|%10s|%10d|%10s|%10s|%2d/%2d/%4d|%10d|%10d|%10d|%10d|\n", 
+	        			dsnv.get(i).getMaNhanVien(), dsnv.get(i).getHo(), dsnv.get(i).getTen(), dsnv.get(i).getGioiTinh(), dsnv.get(i).getNamSinh(), dsnv.get(i).getSoDienThoai(), dsnv.get(i).getChucVu(), dsnv.get(i).getNgay(), dsnv.get(i).getThang(), dsnv.get(i).getNam(), dsnv.get(i).getNgayNghi(), dsnv.get(i).getLuong(), dsnv.get(i).getThuong(), dsnv.get(i).getTongLuong());
+				System.out.println("|____________________________________________________________________________________________________________________________________|");
+			}
+		}
+		if(check == 0) {
+			System.out.println("Khong tim thay khach hang!!!");
+		}
+	}
+	
+	public boolean kiemTraTrungMa(String maNhanVien) {
+        for (NhanVien nv : dsnv) {
+            if (nv.getMaNhanVien().equals(maNhanVien)) {
+                return true; 
+            }
+        } return false; 
+    }
+	
+	public void tinhTienThuong() {
+		int thuong;
+		for(NhanVien nv:dsnv) {
+			if(nv.getNgayNghi() == 0) {
+				thuong = 500000;
+			} else if (nv.getNgayNghi() == 1){
+				thuong = 400000;
+			} else if (nv.getNgayNghi() == 2){
+				thuong = 300000;
+			} else if (nv.getNgayNghi() == 3){
+				thuong = 200000;
+			} else if (nv.getNgayNghi() == 4){
+				thuong = 100000;
+			} else {
+				thuong = 0;
+			}
+			nv.setThuong(thuong);
+		}
+	}
+	
+	public int truLuongNghi(int ngayNghi) {
+		int truLuong = 0;
+		if(ngayNghi > 4) {
+			return truLuong = truLuong + ngayNghi*100000;
+		}
+		return 0;
+	}
+	
+	public void tinhTongLuong() {
+		for(NhanVien nv:dsnv) {
+			int tongLuong = nv.getThuong() + nv.getLuong() - truLuongNghi(nv.getNgayNghi());
+			nv.setTongLuong(tongLuong);
+		}
+	}
+}

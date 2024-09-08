@@ -1,0 +1,10 @@
+package dequy;
+
+public class ThapHN {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

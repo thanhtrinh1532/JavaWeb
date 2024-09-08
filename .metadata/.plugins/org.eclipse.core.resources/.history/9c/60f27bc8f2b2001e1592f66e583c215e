@@ -1,0 +1,28 @@
+package Tree;
+
+import java.util.Scanner;
+public class main {
+	public Node root;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BinaryTree obj=new BinaryTree();
+		Scanner scanner=new Scanner(System.in);
+		obj.creat();
+		obj.docfile();
+		//System.out.println("Hiển thị cây theo Trái-Gốc-Phải");
+		//obj.duyet();
+		//System.out.println("Hiển thị học sinh có điểm lớn hơn 7");
+		//obj.printif();
+		System.out.println("Hiển thị xếp loại,kết quả học sinh ");
+		//obj.printkq();
+		obj.printxl();
+		//System.out.print("\n Nhap ma sinh vien cần tìm: ");
+		//String  maSV =scanner.nextLine();
+		//obj.timkiem(maSV);
+		System.out.print("\n Nhap ma sinh vien cần xóa: ");
+		String  maSV =scanner.nextLine();
+		obj.printxoa(maSV);
+		//obj.printxoa();
+	}
+
+}

@@ -1,0 +1,177 @@
+package DSLKKEP;
+import java.util.Scanner;
+
+public class LinkList {
+	public DoubleLink first,last;
+	DoubleLink q=null;DoubleLink p=null;
+	LinkDAO obj=new LinkDAO();
+	
+	public LinkList() {
+		first=null;last=null;
+	}
+	
+	public void insert(String maBN, String hoTen, String ngaySinh, String diaChi, String soDT, String gioiTinh,
+			String ngheNghiep, String ngayKham) {
+		DoubleLink nut=new DoubleLink(maBN,hoTen,ngaySinh,diaChi,soDT,gioiTinh,ngheNghiep,ngayKham);
+		if((last==null)&&(first==null)) {last=nut;first=nut;}
+		else {
+			last.next=nut;
+			nut.prev=last;
+			last=nut;
+		}
+	}
+	
+	public void ghifile() {
+		insert("BN001", "Nguyễn Văn A", "01/01/1980", "Tp HCM", "0123456789", "Nam", "Bác sĩ", "25/02/2024");
+		insert("BN002", "Trần Thị B", "15/05/1990", "Tp Hà Nội", "0987654321", "Nữ", "Y tá", "26/02/2024");
+		insert("BN003", "Lê Văn C", "10/10/1975", "Tp Đà Nẵng", "0345678901", "Nam", "Kỹ sư", "27/02/2024");
+		insert("BN004", "Phạm Thị D", "20/03/1985", "Tp Cần Thơ", "0765432109", "Nữ", "Giáo viên", "28/02/2024");
+		insert("BN005", "Hoàng Văn E", "05/06/1995", "Tp Hải Phòng", "0890123456", "Nam", "Nhà bếp", "01/03/2024");
+		insert("BN006", "Nguyễn Thị F", "30/09/1988", "Tp Vũng Tàu", "0654321098", "Nữ", "Công nhân", "02/03/2024");
+
+		obj.ghiFile(first,last);
+	}
+	
+	public void docfile() {
+		first=obj.docFile("d:\\dsBN.bin");
+	}
+	
+	public void creatList() {
+		Scanner scanner=new Scanner(System.in);
+		while(true) {
+			String maBN="";
+			System.out.print("\n Nhap ma bệnh nhân: ");
+			 maBN =scanner.nextLine();
+			if(maBN.length()==0) {break;}
+			else {
+				System.out.print("Nhập họ tên: ");
+				String hoTen =scanner.nextLine();
+				System.out.print("Nhập ngày sinh: ");
+				String ngaySinh =scanner.nextLine();
+				System.out.print("Nhập địa chỉ: ");
+				String diaChi =scanner.nextLine();
+				System.out.print("Nhập số điện thoại: ");
+				String soDT =scanner.nextLine();
+				System.out.print("Nhập giới tính: ");
+				String gioiTinh =scanner.nextLine();
+				System.out.print("Nhập nghề nghiệp: ");
+				String ngheNghiep =scanner.nextLine();
+				System.out.print("Nhập ngày khám: ");
+				String ngayKham =scanner.nextLine();
+				scanner.nextLine();
+				insert(maBN,hoTen,ngaySinh,diaChi,soDT,gioiTinh,ngheNghiep,ngayKham);
+			}
+		}
+		obj.ghiFile(first,last);
+	}
+	//hiển thị danh sách
+	public void printList() {
+		DoubleLink p = first;
+		DoubleLink q = last;
+		System.out.println("+----------------------------------------------------------------------------------------------------+");
+		System.out.printf("|  %-6s |  %-12s | %-7s  |  %-9s    | %-9s  | %-3s | %-11s | %-10s |\n","Mã bn","Họ tên","Ngày sinh","Địa chỉ","Số ĐT","GT","Nghề nghiệp","Ngày Khám");
+		System.out.println("+----------------------------------------------------------------------------------------------------+");
+		while(p != null) {
+			System.out.printf("|  %-6s |  %-12s | %-7s |  %-12s | %-7s | %-3s |   %-9s | %-8s |\n",p.getMaBN(),p.getHoTen(),p.getNgaySinh(),p.getDiaChi(),p.getSoDT(),p.getGioiTinh(),p.getNgheNghiep(),p.getNgayKham());
+			p = p.next;
+			System.out.println("+----------------------------------------------------------------------------------------------------+");
+		}
+		System.out.println("");
+		obj.ghiFile(p,last);
+	}
+	//Tìm kiếm bệnh nhân theo mã
+	public DoubleLink search(String maBN) {
+		DoubleLink p=first;
+		while((p!=null)&&(p.getMaBN().equals(maBN)!=true)) {
+			p=p.next;
+		}
+		return p;
+	}
+	public void hienthisearch(String maBN) {
+		DoubleLink p=search(maBN);
+		if (search(maBN)!=null){
+			System.out.println("+----------------------------------------------------------------------------------------------------+");
+			System.out.printf("|  %-6s |  %-12s | %-7s  |  %-9s    | %-9s  | %-3s | %-11s | %-10s |\n","Mã bn","Họ tên","Ngày sinh","Địa chỉ","Số ĐT","GT","Nghề nghiệp","Ngày Khám");
+			System.out.println("+----------------------------------------------------------------------------------------------------+");
+			System.out.printf("|  %-6s |  %-12s | %-7s |  %-12s | %-7s | %-3s |   %-9s | %-8s |\n",p.getMaBN(),p.getHoTen(),p.getNgaySinh(),p.getDiaChi(),p.getSoDT(),p.getGioiTinh(),p.getNgheNghiep(),p.getNgayKham());
+			System.out.println("+----------------------------------------------------------------------------------------------------+");
+		}
+			else 
+				System.out.println("Mã bệnh nhân không tồn tại");
+		
+	}
+	//xóa theo mã BN
+	public void delete(String maBN) {
+		DoubleLink p=search(maBN);
+		if(p!=null) {
+			if((first==last)&&(last==p)) {first=null;last=null;}
+			else if(p==first) {first=first.next;first.prev=null;}
+				else 
+					if(p==last) {last=last.prev;last.next=null;}
+					else {DoubleLink u=p.prev;
+					DoubleLink v=p.next;
+					u.next=v;v.prev=u;
+					}
+				
+		}
+		if (p==null) {
+			System.out.println("Mã bệnh nhân không tồn tại");
+		}
+		else {
+//			System.out.printf("Đã xóa mã bênh nhân %s \n",maBN);
+//			DoubleLink v = first;
+//			DoubleLink q = last;
+//			System.out.println("+----------------------------------------------------------------------------------------------------+");
+//			System.out.printf("|  %-6s |  %-12s | %-7s  |  %-9s    | %-9s  | %-3s | %-11s | %-10s |\n","Mã bn","Họ tên","Ngày sinh","Địa chỉ","Số ĐT","GT","Nghề nghiệp","Ngày Khám");
+//			System.out.println("+----------------------------------------------------------------------------------------------------+");
+//			while(v != null) {
+//				System.out.printf("|  %-6s |  %-12s | %-7s |  %-12s | %-7s | %-3s |   %-9s | %-8s |\n",v.getMaBN(),v.getHoTen(),v.getNgaySinh(),v.getDiaChi(),v.getSoDT(),v.getGioiTinh(),v.getNgheNghiep(),v.getNgayKham());
+//				v = v.next;
+//				System.out.println("+----------------------------------------------------------------------------------------------------+");
+//			}
+//			System.out.println("");
+			obj.ghiFile(p,q);
+		}
+		
+	}
+	
+	//sắp xếp họ tên tăng dần
+	public void sortList() {
+		String ht,maBN,ngaySinh,diaChi,soDT,gioiTinh,ngheNghiep,ngayKham;
+		DoubleLink p=first;
+		while(p!=null) {
+			DoubleLink q=p.next;
+			while(q!=null) {
+				if(p.getHoTen().compareTo(q.getHoTen())>0) {
+					maBN=q.getMaBN();
+					ht=q.getHoTen();
+					ngaySinh=q.getNgaySinh();
+					diaChi=q.getDiaChi();
+					soDT=q.getSoDT();
+					gioiTinh=q.getGioiTinh();
+					ngheNghiep=q.getNgheNghiep();
+					ngayKham=q.getNgayKham();
+					q.setMaBN(p.getMaBN());
+					q.setHoTen(p.getHoTen());
+					q.setNgaySinh(p.getNgaySinh());
+					q.setDiaChi(p.getDiaChi());
+					q.setSoDT(p.getSoDT());
+					q.setGioiTinh(p.getGioiTinh());
+					q.setNgheNghiep(p.getNgheNghiep());
+					q.setNgayKham(p.getNgayKham());
+					p.setMaBN(maBN);
+					p.setHoTen(ht);
+					p.setNgaySinh(ngaySinh);
+					p.setDiaChi(diaChi);
+					p.setSoDT(soDT);
+					p.setGioiTinh(gioiTinh);
+					p.setNgheNghiep(ngheNghiep);
+					p.setNgayKham(ngayKham);
+				}
+				q=q.next;
+			}
+			p=p.next;
+		}
+		obj.ghiFile(p, q);
+	}
+}

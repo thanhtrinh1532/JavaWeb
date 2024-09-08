@@ -1,0 +1,271 @@
+package Tree;
+import java.util.Scanner;
+
+
+public class BinaryTree {/*
+	public Node root;
+	public Node left,right;
+	TreeDAO obj =new TreeDAO();
+	public BinaryTree() {
+		root=null;
+	}
+	//hàm đệ qui chèn phần tử vào cây nhị phân
+	public Node insertNode(Node root,String maSV, String hoten, Double diem) {
+		// root = new Node(maSV,hoten,diem);
+		if(root==null) {
+			root = new Node(maSV,hoten,diem);
+			return root;
+		}
+		else if(root.getMaSV().compareTo(maSV)>0) {root.left = insertNode(root.left,maSV,hoten,diem);}
+		else if(root.getMaSV().compareTo(maSV)<0) {root.right = insertNode(root.right,maSV,hoten,diem);}
+		return root;
+	}
+	//hàm đệ qui chèn phần tử vào cây nhị phân không trùng mã
+			public Node insertNode1(Node root,String maSV, String hoten, Double diem) {
+				if(root==null) {
+					root = new Node(maSV,hoten,diem);
+					return root;
+				}
+				else
+				{	Node q=null,p=root;
+					while(p!=null) {
+						if(p.getMaSV().compareTo(maSV)>0) {q=p;p=p.left;}
+						else if(p.getMaSV().compareTo(maSV)<0) {q=p;p=p.right;}
+						else {System.out.println("maSV đã tồn tại:");break;}
+				}
+					if(p==null) {
+						if (q.getMaSV().compareTo(maSV)>0) q.left = new Node(maSV,hoten,diem);
+						else q.right = new Node(maSV,hoten,diem);
+					
+					}
+					return root;
+					}
+			}
+	public void ghifile() {
+		insertNode(root,"05","Anh",8.25);
+		insertNode(root,"06","Vân",7.25);
+		insertNode(root,"07","Trang",5.25);
+		obj.ghiFile(left,right);
+	}
+	public void docfile() {
+		left=obj.docFile("d:\\dstree.bin");
+	}
+	public void creat() {
+		 boolean ok=true;
+		Scanner scanner=new Scanner(System.in);
+		String maSV="";
+		while(ok==true) {
+			
+			System.out.print("Nhap ma sinh vien: ");
+			 maSV =scanner.nextLine();
+			if(maSV.length()==0) {ok=false;break;}
+			else {
+				System.out.print("Nhap ho ten: ");
+				String hoten =scanner.nextLine();
+				System.out.print("nhap diem");
+				double diem=scanner.nextFloat();
+				scanner.nextLine();
+				root =insertNode1(root,maSV, hoten, diem);
+				
+			}
+			obj.ghiFile(left, right);
+		}
+	}
+	//duyet chieu TGP
+	public void tgp(Node root) {
+		if(root!=null) {
+			tgp(root.left);
+			System.out.println(root.getMaSV()+" "+root.getHoten()+" "+root.getDiem());
+			tgp(root.right);
+		}
+	}
+	public void duyet() {
+		tgp(root);
+	}
+	public void duyetif(Node root) {
+		if(root!=null) {
+			tgp(root.left);
+			if(root.getDiem()>=7) System.out.println(root.getMaSV()+" "+root.getHoten()+" "+root.getDiem());
+			tgp(root.right);
+		}
+	}
+	public void printif() {
+		duyetif(root);
+	}
+	//kết quả học sinh
+	public void kq(Node root) {
+		if(root!=null) {
+			kq(root.left);
+			if(root.getDiem()>=5) root.setKq("Đậu");else root.setKq("Rớt");
+			System.out.println(root.getMaSV()+" "+root.getHoten()+" "+root.getDiem()+" "+root.getKq());
+			kq(root.right);
+		}
+
+	}
+	public void printkq() {
+		kq(root);
+	}
+	//xếp loại học sinh
+	public void xl(Node root) {
+		if(root!=null) {
+			xl(root.left);
+			if(root.getDiem()<5) root.setXl("Kém");
+			else if(root.getDiem()<7) root.setXl("TB");
+				else if(root.getDiem()<8) root.setXl("Khá");
+				else root.setXl("Giỏi");;
+			System.out.println(root.getMaSV()+" "+root.getHoten()+" "+root.getDiem()+" "+root.getXl()+" "+root.getKq());
+			xl(root.right);
+		}
+	}
+	public void printxl() {
+		xl(root);
+	}
+	//tìm kiếm theo mã
+	public void timkiem(Node root ,String maSV) {
+		Node p=root,q=p;
+		while(p!=null) {
+			if(p.getMaSV().compareTo(maSV)>0)p=p.left;
+			else if(p.getMaSV().compareTo(maSV)<0) p=p.right;
+			else {
+				System.out.println(root.getMaSV()+" "+root.getHoten()+" "+root.getDiem()+" "+root.getXl()+" "+root.getKq());
+				break;
+			}
+		}
+		if(p==null) System.out.println("Cây rỗng hoặc không tìm kiếm thấy");
+	}
+	
+	/*xóa sinh vien theo ma
+	
+		public void xoa(Node root, String maSV) {
+			Node p=root,q=root;
+			 if(root==null) System.out.println("cây rỗng");
+			 if (timkiem(root,maSV)!=null) {
+				 if(p.left==null) {
+					 p= p.right;
+				 }
+				 Node maxNode = p.left;
+				 Node preNode = maxNode;
+				 while (maxNode.right!=null) {
+					 preNode = maxNode;
+					 maxNode = maxNode.right;
+				 }
+				 System.out.print("dsdw");
+				 preNode.getMaSV();
+				 maxNode.getMaSV();
+				 maxNode.right=p.right;
+				 if(maxNode !=p.left) {
+					 preNode.right=maxNode.left;
+					 maxNode.left=p.left;
+				 }
+				// return maxNode;
+			 }
+			 if(p.getMaSV().compareTo(maSV)<0) {
+				 p=p.right;
+			 }
+			 else {
+				 p=p.left;
+			 }
+			 if(p!=null) {
+					kq(p.left);
+					System.out.println(p.getMaSV()+" "+p.getHoten()+" "+p.getDiem()+" "+p.getKq());
+					kq(p.right);
+				}
+		}
+		
+	public void printxoa() {
+		Scanner scanner =new Scanner(System.in);
+		System.out.print("\n Nhap ma sinh vien cần xóa: ");
+		String  maSV =scanner.nextLine();
+		xoa(root,maSV);
+	}*/
+
+		 
+	 class Node {
+		 
+	        String key="";
+	        Node left, right;
+	 
+	        public Node(String maSV, String hoten, Double diem) {
+	            key = maSV;
+	            left = right = null;
+	        }
+	    }
+	 
+	    Node root;
+  
+ 
+    public BinaryTree() {
+        root = null;
+    }
+ 
+    void deleteKey(String key) {
+        root = deleteRec(root, key);
+    }
+
+   public Node deleteRec(Node root, String key) {
+    	Node p=root;
+        if (root == null) {
+            return root;
+        }
+ 
+        if (key.compareTo(root.key)<0) {
+            root.left = deleteRec(root.left, key);
+        } else if (key.compareTo(root.key)>0) {
+            root.right = deleteRec(root.right, key);
+        } else {
+ 
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+ 
+            root.key = minValue(root.right);
+ 
+            root.right = deleteRec(root.right, root.key);
+        }
+ 
+        return root;
+    }
+ 
+    String minValue(Node root) {
+        String misv = root.key;
+        while (root.left != null) {
+            misv = root.left.key;
+            root = root.left;
+        }
+        return misv;
+    }
+ 
+    void insert(String key) {
+        root = insertRec(root, key);
+    }
+ 
+    Node insertRec(Node root, String key) {
+ 
+        if (root == null) {
+            root = new Node(key);
+            return root;
+        }
+ 
+        if (key.compareTo(root.key)<0) {
+            root.left = insertRec(root.left, key);
+        } else if (key.compareTo(root.key)>0) {
+            root.right = insertRec(root.right, key);
+        }
+ 
+        return root;
+    }
+ /*
+    void inorder() {
+        inorderRec(root);
+    }
+ 
+    void inorderRec(Node root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.print(root.key + " ");
+            inorderRec(root.right);
+        }
+    }*/
+}

@@ -1,0 +1,67 @@
+package Tree;
+
+import java.util.Scanner;
+public class main {
+	public Node root;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//BinaryTree obj=new BinaryTree();
+		Scanner scanner=new Scanner(System.in);
+		//obj.creat();
+		//obj.docfile();
+		//System.out.println("Hiển thị cây theo Trái-Gốc-Phải");
+		//obj.duyet();
+		//System.out.println("Hiển thị học sinh có điểm lớn hơn 7");
+		//obj.printif();
+		//System.out.println("Hiển thị xếp loại,kết quả học sinh ");
+		//obj.printkq();
+		//obj.printxl();
+		//System.out.print("\n Nhap ma sinh vien cần tìm: ");
+		//String  maSV =scanner.nextLine();
+		//obj.timkiem(maSV);
+		//System.out.print("\n Nhap ma sinh vien cần xóa: ");
+		//String  maSV =scanner.nextLine();
+		//obj.printxoa(maSV);
+		//obj.printxoa();
+		BinaryTree tree = new BinaryTree();
+		 
+        /* Tạo ra một cây nhị phân
+              50
+           /     \
+          30      70
+         /  \    /  \
+        20   40  60   80 */
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(70);
+        tree.insert(60);
+        tree.insert(80);
+ 
+        System.out.println(
+                "Cây nhị phân được khởi tạo");
+        tree.inorder();
+        System.out.println("");
+        System.out.println("Xóa node 20");
+        tree.deleteKey(20);
+        System.out.println(
+                "Cây nhị phân sau khi được xử lí: ");
+        tree.inorder();
+        System.out.println("");
+        System.out.println("Xóa node 30");
+        tree.deleteKey(30);
+        System.out.println(
+                "Cây nhị phân sau khi được xử lí:");
+        tree.inorder();
+        System.out.println("");
+        System.out.println("Xóa node 50");
+        tree.deleteKey(50);
+        System.out.println(
+                "Cây nhị phân sau khi được xử lí:");
+        tree.inorder();
+        System.out.println("");
+    }
+	
+
+}

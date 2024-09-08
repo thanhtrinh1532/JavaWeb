@@ -1,0 +1,14 @@
+package DSLKDOI;
+
+
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DoubleLinkList obj=new DoubleLinkList();
+		obj.creatList();
+		obj.printList();
+		obj.printList1();
+	}
+
+}

@@ -1,0 +1,34 @@
+package DSLKKEP;
+
+import java.util.Scanner;
+
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+				LinkList obj=new LinkList();
+				Scanner sc=new Scanner(System.in);
+				obj.ghifile();
+				obj.docfile();
+				obj.printList();/*
+				obj.kq();
+				obj.xl();
+				System.out.println("Danh sách sinh viên");
+				obj.printList();*/
+				System.out.print("Nhập mã mã BN cần tìm:");
+				String maTim=sc.nextLine();
+				obj.delete("maTim");
+				System.out.print("Nhập mã mã BN cần xóa:");
+				String maXoa=sc.nextLine();
+				obj.delete("maXoa");
+				obj.printList();
+				/*
+				System.out.println("Danh sách sau khi xóa");
+				obj.printList();
+				obj.sortList();
+				System.out.println("Danh sách sau khi sắp xếp theo họ tên");
+				obj.printmax();
+				obj.thongke();
+	*/}
+
+}

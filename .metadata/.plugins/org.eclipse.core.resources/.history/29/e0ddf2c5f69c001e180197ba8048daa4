@@ -1,0 +1,25 @@
+package dequy;
+import java.util.Scanner;
+
+public class ThapHN {
+	
+	public static void thap(int n, int i, int j, int k) {
+		String[] a= {"A","B","C"};
+		if(n==1) {
+			System.out.printf("Chuyen dia %d tu cot %s sang cot %s\n",n,a[i],a[j]);
+		} else {
+			thap(n-1,i,k,j);
+			System.out.printf("Chuyen dia %d tu cot %s sang cot %s\n",n, a[i], a[j]);
+			thap(n-1,k,j,i);
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int n;
+		Scanner sc=new Scanner(System.in);
+		System.out.print("Nhập số lượng đĩa: ");
+		n=sc.nextInt();
+		thap(n,0,2,1);
+	}
+
+}
